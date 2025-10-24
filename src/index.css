@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{--bg:#05060a;--card:#071025;--muted:#9ca3af;}
+html,body,#root{height:100%}
+body{
+  margin:0; padding:0;
+  background: radial-gradient(ellipse at top left, #071026 0%, #030412 60%);
+  color:#cbd5e1;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto;
+  -webkit-font-smoothing:antialiased;
+}
+.app { height:100vh; overflow:hidden; position:relative; }
+.particles-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
+.stage { position:relative; z-index:10; height:100vh; width:100vw; scroll-snap-type:y mandatory; overflow-y:scroll; }
+.section { height:100vh; display:flex; align-items:center; justify-content:center; padding:48px; scroll-snap-align:start; }
+.container { max-width:1100px; width:100%; }
+.card { background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:24px; box-shadow: 0 10px 30px rgba(2,6,23,0.6); }
+.hero-title { font-size:2.25rem; font-weight:700; }
+.tabbar { display:flex; gap:8px; margin-top:18px; }
+.tab { padding:8px 14px; border-radius:10px; cursor:pointer; color:#cfeffa; opacity:0.9; }
+.tab-active { background: linear-gradient(90deg,#7dd3fc,#0284c7); color:#021124; font-weight:700; }
+.btn-gradient{ background: linear-gradient(90deg,#7dd3fc,#0284c7); color:#021124; padding:10px 14px; border-radius:10px; font-weight:600; }
+.small { color: var(--muted); font-size:0.92rem; }
+.project-card { background: rgba(255,255,255,0.02); padding:18px; border-radius:12px; transition:transform .25s, box-shadow .25s; }
+.project-card:hover { transform:translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.6); }
+.skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; }
+.skill-pill { background: rgba(255,255,255,0.02); padding:10px 12px; border-radius:999px; display:inline-block; }
+.resume-preview { max-height:420px; overflow:auto; border-radius:8px; }
