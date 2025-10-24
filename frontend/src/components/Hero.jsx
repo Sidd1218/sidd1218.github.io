@@ -29,7 +29,7 @@ export default function Hero({ onCTAClick = () => {} }) {
 
         <div style={{ width: 120, display: "flex", justifyContent: "center" }}>
           <div style={{ width: 120, height: 120, borderRadius: 999, overflow: "hidden", background: "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02))", boxShadow: "0 8px 28px rgba(0,0,0,0.5)" }}>
-            <img src="/avatar.png" alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src="/avatar.svg" alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
         </div>
       </div>
