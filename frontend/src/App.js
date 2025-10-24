@@ -1,83 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Particles from "./components/Particles";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Experience from "./components/Experience";
-import ContactForm from "./components/ContactForm";
-import TabBar from "./components/TabBar";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Experience from "./pages/Experience";
+import Contact from "./pages/Contact";
 import "./App.css";
 
 export default function App() {
-  const sections = ["Hero", "About", "Projects", "Experience", "Contact"];
-  const [active, setActive] = useState("Hero");
-  const [showNav, setShowNav] = useState(false);
-
-  useEffect(() => {
-    const opts = { root: null, threshold: 0.45 };
-
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        const name = e.target.dataset.section;
-        if (e.isIntersecting) {
-          setActive(name);
-        }
-      });
-    }, opts);
-
-    const nodes = document.querySelectorAll("[data-section]");
-    nodes.forEach((n) => obs.observe(n));
-
-    const aboutEl = document.querySelector('[data-section="About"]');
-    if (aboutEl) {
-      const obs2 = new IntersectionObserver(
-        (entries) => {
-          const e = entries[0];
-          setShowNav(!e.isIntersecting);
-        },
-        { root: null, threshold: 0.3 }
-      );
-      obs2.observe(aboutEl);
-      return () => {
-        obs.disconnect();
-        obs2.disconnect();
-      };
-    }
-
-    return () => obs.disconnect();
-  }, []);
-
-  function scrollTo(name) {
-    const el = document.querySelector(`[data-section="${name}"]`);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
   return (
-    <div style={{ minHeight: "100vh", position: "relative", background: "radial-gradient(ellipse at top left,#071026 0%,#030412 60%)" }}>
-      <Particles />
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 24px" }}>
-        <section data-section="Hero" style={{ paddingTop: 40, paddingBottom: 40 }}>
-          <Hero onCTAClick={() => scrollTo("Projects")} />
-        </section>
-
-        <section data-section="About" style={{ paddingTop: 40, paddingBottom: 40 }}>
-          <About />
-        </section>
-
-        <section data-section="Projects" style={{ paddingTop: 40, paddingBottom: 40 }}>
-          <Projects />
-        </section>
-
-        <section data-section="Experience" style={{ paddingTop: 40, paddingBottom: 40 }}>
-          <Experience />
-        </section>
-
-        <section data-section="Contact" style={{ paddingTop: 40, paddingBottom: 80 }}>
-          <ContactForm />
-        </section>
+    <BrowserRouter>
+      <div style={{ minHeight: "100vh", position: "relative", background: "radial-gradient(ellipse at top left,#071026 0%,#030412 60%)" }}>
+        <Particles />
+        <Header />
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "100px 24px 48px 24px", position: "relative", zIndex: 10 }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
       </div>
-
-      <TabBar visible={showNav} active={active} onClick={(n) => scrollTo(n)} />
-    </div>
+    </BrowserRouter>
   );
 }
